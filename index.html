@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>portfolio</title>
+	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #f0f0f0;
+				margin: 0px;
+				overflow: hidden;
+			}
+		</style>
+</head>
+<body>
+<!--threejs script for the interactive animation-->
+<script>
+       //add all variables needed in the script
+			var container, stats;
+			var camera, scene, renderer;
+
+			var raycaster;
+			var mouse;
+
+			var PI2 = Math.PI * 2;
+
+			var programFill = function ( context ) {
+
+				context.beginPath();
+				context.arc( 0, 0, 0.5, 0, PI2, true );
+				context.fill();
+
+			};
+
+
+</body>
+</html>

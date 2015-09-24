@@ -33,6 +33,50 @@
 
 			};
 
+			var programStroke = function ( context ) {
+
+				context.lineWidth = 0.025;
+				context.beginPath();
+				context.arc( 0, 0, 0.5, 0, PI2, true );
+				context.stroke();
+
+			};
+			//camera position depending on mouse movement set
+			var INTERSECTED;
+
+			init();
+			animate();
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				var info = document.createElement( 'div' );
+				info.style.position = 'absolute';
+				info.style.top = '10px';
+				info.style.width = '100%';
+				info.style.textAlign = 'center';
+				info.innerHTML = '<a href="http://threejs.org" target="_blank">three.js</a> canvas - interactive particles';
+				container.appendChild( info );
+
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera.position.set( 0, 300, 500 );
+
+				scene = new THREE.Scene();
+
+				for ( var i = 0; i < 100; i ++ ) {
+
+					var particle = new THREE.Sprite( new THREE.SpriteCanvasMaterial( { color: Math.random() * 0x808080 + 0x808080, program: programStroke } ) );
+					particle.position.x = Math.random() * 800 - 400;
+					particle.position.y = Math.random() * 800 - 400;
+					particle.position.z = Math.random() * 800 - 400;
+					particle.scale.x = particle.scale.y = Math.random() * 20 + 20;
+					scene.add( particle );
+
+				}
+				
+
 
 </body>
 </html>

@@ -98,6 +98,71 @@
 				window.addEventListener( 'resize', onWindowResize, false );
 
 			}
+			//window resize optimization
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				render();
+				stats.update();
+
+			}
+			//change the radius of the circle depending on the mouse position and the camera perspective
+
+			var radius = 600;
+			var theta = 0;
+
+			function render() {
+
+				// rotate camera
+
+				theta += 0.1;
+
+				camera.position.x = radius * Math.sin( THREE.Math.degToRad( theta ) );
+				camera.position.y = radius * Math.sin( THREE.Math.degToRad( theta ) );
+				camera.position.z = radius * Math.cos( THREE.Math.degToRad( theta ) );
+				camera.lookAt( scene.position );
+
+				camera.updateMatrixWorld();
+
+				// find intersections
+
+				raycaster.setFromCamera( mouse, camera );
+
+				var intersects = raycaster.intersectObjects( scene.children );
+
+				if ( intersects.length > 0 ) {
+
+					if ( INTERSECTED != intersects[ 0 ].object ) {
+
+						if ( INTERSECTED ) INTERSECTED.material.program = programStroke;
+
+						INTERSECTED = intersects[ 0 ].object;
+						INTERSECTED.material.program = programFill;
+
+					}
+
+				} else {
+
+					if ( INTERSECTED ) INTERSECTED.material.program = programStroke;
+
+					INTERSECTED = null;
+
+				}
+
+				renderer.render( scene, camera );
+
+			}
+
 
 
 </body>

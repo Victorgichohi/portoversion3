@@ -1,0 +1,20 @@
+/*typed js*/
+p{
+	font-size: 30px;
+	
+	
+	text-align: center;
+}
+
+.wrap{
+	max-width: 600px;
+	margin:150px auto;
+	text-align: center;
+}
+
+.type-wrap{
+	font-size: 40px;
+	color: rgb(226,149,232);
+	padding:60px;
+	
+}
